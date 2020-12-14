@@ -3,6 +3,7 @@
 - [Vue Forms](#vue-forms)
   - [Deployment](#deployment)
   - [Checkboxs](#checkboxs)
+  - [v-models in custom form control](#v-models-in-custom-form-control)
 
 ## Deployment
 
@@ -59,3 +60,48 @@ export default {
 ```
 
 - If we have a single checkbox, well use `interest: false`, as it will return true/false value
+
+## v-models in custom form control
+
+- Vue sets prop named `modelValue` for us
+- When inut value changes, vue emits an event `update:modelValue`
+- Vue does 2 things for us
+  - `:model-value:""`
+  - `@update:modelValue=""`
+- We can then update data by emitting event with data using `this.$emit('update:modelValue', data);`
+
+```vue
+<!-- Custom form control -->
+<template>
+  <ul>
+    <li :class="{ active: modelValue === 'poor' }">
+      <button type="button" @click="activate('poor')">Poor</button>
+    </li>
+    <li :class="{ active: modelValue === 'average' }">
+      <button type="button" @click="activate('average')">Average</button>
+    </li>
+    <li :class="{ active: modelValue === 'great' }">
+      <button type="button" @click="activate('great')">Great</button>
+    </li>
+  </ul>
+</template>
+<script>
+export default {
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+  methods: {
+    activate(option) {
+      this.activeOption = option;
+      this.$emit('update:modelValue', option);
+    }
+  }
+};
+</script>
+```
+
+```html
+<!-- Using above element -->
+<div class="form-control">
+  <rating-control v-model="rating"></rating-control>
+</div>
+```
