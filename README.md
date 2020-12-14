@@ -7,7 +7,7 @@
 
 ## Deployment
 
-- Check deployment at
+- Check deployment at https://gagandeep39.github.io/vue-forms-demo/
 
 ## Checkboxs
 
@@ -91,7 +91,6 @@ export default {
   emits: ['update:modelValue'],
   methods: {
     activate(option) {
-      this.activeOption = option;
       this.$emit('update:modelValue', option);
     }
   }
