@@ -1,12 +1,29 @@
 <template>
-  <div></div>
+  <the-form></the-form>
 </template>
 
 <script>
+import TheForm from "./components/TheForm";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    TheForm,
+  },
 };
 </script>
 
-<style></style>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #292929;
+}
+</style>
